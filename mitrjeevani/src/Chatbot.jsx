@@ -26,14 +26,14 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-8 w-full max-w-2xl sm:w-svw mx-auto bg-gray-100 p-6 rounded-lg shadow-lg">
+    <div className="flex flex-col items-center mt-8 w-full max-w-2xl sm:w-svw mx-auto bg-gray-100 p-6 rounded-lg shadow-lg border border-zinc-600">
       <div className="w-full h-96 overflow-y-auto mb-4">
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`my-2 p-3 rounded-lg max-w-2xl ${
+            className={`my-2 p-3 w-fit min-w-24 max-w-2xl rounded-3xl ${
               msg.type === 'sent'
-                ? 'bg-blue-500 text-white self-end ml-auto'
+                ? 'bg-blue-900 opacity-90 text-white self-end ml-auto text-right pr-5'
                 : 'bg-gray-300 text-gray-900 self-start mr-auto'
             }`}
           >
@@ -57,13 +57,13 @@ const Chatbot = () => {
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           placeholder="Ask me something..."
-          className="flex-grow p-3 rounded-lg border border-gray-300 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="flex-grow p-3 rounded-3xl border border-gray-300 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           disabled={loading}
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50"
+          className="bg-emerald-800 text-white px-4 py-2 rounded-3xl w-24 hover:bg-blue-600 disabled:opacity-50"
         >
           Send
         </button>

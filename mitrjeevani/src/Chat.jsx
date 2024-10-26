@@ -7,6 +7,7 @@ function Chat() {
   return (
     <div>
       <Chatbot></Chatbot>
+      <br />
       <div className='border h-52 border-zinc-950 flex bg-emerald-200'>
         <div className='border border-zinc-400 shadow-md h-full w-52 rounded-full bg-emerald-50'>
           <img src={Aayushi} alt="" />
