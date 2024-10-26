@@ -18,6 +18,10 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/support" element={<Support />} />
       </Routes>
+      <Routes>
+        <Route path="/chat" element={<Chat />} />
+
+      </Routes>
     </Router>
   );
 }
