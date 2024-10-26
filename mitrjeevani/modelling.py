@@ -2,7 +2,7 @@ import requests
 import os
 
 # Replace with your actual API key and external user ID
-api_key = '7HooNeUUdq8TJDI7FPcOO9SyEjBykQIs'
+api_key = 'Dc7JAnS74SyVKe7EzHKnMIKuqF2qYtkg'
 external_user_id = '06931013-9ae4-449d-87e8-4224508ba0d0'
 session_id = None  # Will store session ID for reuse
 
@@ -13,7 +13,7 @@ def initialize_session():
         create_session_url = 'https://api.on-demand.io/chat/v1/sessions'
         headers = {'apikey': api_key}
         session_data = {
-            "pluginIds": ['plugin-1729857744'],
+            "pluginIds": ['plugin-1729925443'],
             "externalUserId": external_user_id
         }
         response = requests.post(create_session_url, headers=headers, json=session_data)
@@ -31,7 +31,7 @@ def get_response(user_query):
     query_body = {
         "endpointId": "predefined-openai-gpt4o",
         "query": user_query,
-        "pluginIds": ["plugin-1729857744"],
+        "pluginIds": ["plugin-1729925443"],
         "responseMode": "sync"
     }
     response = requests.post(submit_query_url, headers=headers, json=query_body)
