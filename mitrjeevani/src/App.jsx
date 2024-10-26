@@ -19,7 +19,7 @@ function App() {
         <Route path="/support" element={<Support />} />
       </Routes>
       <Routes>
-        <Route path="/chat" element={<Chat />} />
+
 
       </Routes>
     </Router>
