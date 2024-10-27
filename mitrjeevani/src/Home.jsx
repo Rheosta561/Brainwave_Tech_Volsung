@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import Logo from './assets/Logo'
 import Ayushi from './Ayushi'
-import Intro from './intro'
+import Intro from './Intro'
 import Get from './Get'
 import Footer from './Footer'
 
