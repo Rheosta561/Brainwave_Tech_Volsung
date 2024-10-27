@@ -31,9 +31,9 @@ const Chatbot = () => {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`my-2 p-3 w-fit min-w-24 max-w-2xl rounded-3xl ${
+            className={`my-2 p-3 w-fit min-w-16 max-w-2xl rounded-3xl  ${
               msg.type === 'sent'
-                ? 'bg-blue-900 opacity-90 text-white self-end ml-auto text-right pr-5'
+                ? 'bg-blue-900 opacity-90 text-white self-end ml-auto text-right '
                 : 'bg-gray-300 text-gray-900 self-start mr-auto'
             }`}
           >
