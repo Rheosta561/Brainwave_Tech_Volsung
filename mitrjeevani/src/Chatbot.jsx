@@ -8,22 +8,23 @@ const Chatbot = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!userInput.trim()) return; 
-
+  
     setMessages((prevMessages) => [...prevMessages, { type: 'sent', text: userInput }]);
     setUserInput(''); 
     setLoading(true); 
-
+  
     try {
-      const res = await axios.post('http://localhost:3001/api/process', { userInput });
-      setMessages((prevMessages) => [...prevMessages, { type: 'received', text: res.data.result }]);
+      const res = await axios.post('https://backend-mitr-1.onrender.com/model', { prompt: userInput }); // Change userInput to prompt
+      setMessages((prevMessages) => [...prevMessages, { type: 'received', text: res.data.output }]);
     } catch (error) {
       setMessages((prevMessages) => [...prevMessages, { type: 'received', text: 'Error occurred while processing your request.' }]);
     } finally {
       setLoading(false); 
     }
   };
+  
 
   return (
     <div className="flex flex-col items-center mt-8 w-full max-w-2xl sm:w-svw mx-auto bg-gray-100 p-6 rounded-lg shadow-lg border border-zinc-600">
