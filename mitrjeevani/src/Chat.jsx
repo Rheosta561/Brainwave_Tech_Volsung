@@ -8,9 +8,9 @@ function Chat() {
     <div>
       <Chatbot></Chatbot>
       <br />
-      <div className='border h-52 border-zinc-950 flex bg-emerald-200'>
+      <div className='border h-fit border-zinc-950 flex bg-emerald-200'>
         <div className='border  border-zinc-400 shadow-md h-full w-52 rounded-full bg-emerald-50'>
-          <img src={Aayushi} alt="" />
+          <img src={Aayushi} alt="" className='scale-105 ' />
         </div>
         <div className=' w-96 sm:w-56 md:w-96 flex flex-col'>
           <div className=' w-full h-1/2 mt-26 '></div>
