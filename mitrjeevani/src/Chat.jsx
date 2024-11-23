@@ -9,7 +9,7 @@ function Chat() {
       <Chatbot></Chatbot>
       <br />
       <div className='border h-52 border-zinc-950 flex bg-emerald-200'>
-        <div className='border scale-150 md:scale-100 sm:scale-100 ls:sclae-100 border-zinc-400 shadow-md h-full w-52 rounded-full bg-emerald-50'>
+        <div className='border  border-zinc-400 shadow-md h-full w-52 rounded-full bg-emerald-50'>
           <img src={Aayushi} alt="" />
         </div>
         <div className=' w-96 sm:w-56 md:w-96 flex flex-col'>
