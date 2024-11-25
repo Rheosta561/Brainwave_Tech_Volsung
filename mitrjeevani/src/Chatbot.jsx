@@ -1,6 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BoldText = ({ text }) => {
+  // Regular expression to find text between *
+  const boldRegex = /\*(.*?)\*/g;
+
+  // Split the text and keep track of matches
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = boldRegex.exec(text)) !== null) {
+    // Push the text before the match
+    if (lastIndex < match.index) {
+      parts.push({ text: text.slice(lastIndex, match.index), bold: false });
+    }
+    // Push the matched text
+    parts.push({ text: match[1], bold: true });
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Push the remaining text after the last match
+  if (lastIndex < text.length) {
+    parts.push({ text: text.slice(lastIndex), bold: false });
+  }
+
+  return (
+    <>
+      {parts.map((part, index) =>
+        part.bold ? (
+          <b key={index}>{part.text}</b>
+        ) : (
+          <span key={index}>{part.text}</span>
+        )
+      )}
+    </>
+  );
+};
+
 const Chatbot = () => {
   const [userInput, setUserInput] = useState('');
   const [messages, setMessages] = useState([]);
@@ -8,23 +45,25 @@ const Chatbot = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!userInput.trim()) return; 
-  
+
+    if (!userInput.trim()) return;
+
     setMessages((prevMessages) => [...prevMessages, { type: 'sent', text: userInput }]);
-    setUserInput(''); 
-    setLoading(true); 
-  
+    setUserInput('');
+    setLoading(true);
+
     try {
-      const res = await axios.post('https://backend-mitr-1.onrender.com/model', { prompt: userInput }); // Change userInput to prompt
+      const res = await axios.post('https://backend-mitr-1.onrender.com/model', { prompt: userInput }); // Update API URL
       setMessages((prevMessages) => [...prevMessages, { type: 'received', text: res.data.output }]);
     } catch (error) {
-      setMessages((prevMessages) => [...prevMessages, { type: 'received', text: 'Error occurred while processing your request.' }]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { type: 'received', text: 'Error occurred while processing your request.' },
+      ]);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
-  
 
   return (
     <div className="flex flex-col items-center mt-8 w-full max-w-2xl sm:w-svw mx-auto bg-gray-100 p-6 rounded-lg shadow-lg border border-zinc-600">
@@ -32,13 +71,13 @@ const Chatbot = () => {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`my-2 p-3 w-fit min-w-16 max-w-2xl rounded-3xl  ${
+            className={`my-2 p-3 w-fit min-w-16 max-w-2xl rounded-3xl ${
               msg.type === 'sent'
-                ? 'bg-blue-900 opacity-90 text-white self-end ml-auto text-right '
+                ? 'bg-blue-900 opacity-90 text-white self-end ml-auto text-right'
                 : 'bg-gray-300 text-gray-900 self-start mr-auto'
             }`}
           >
-            {msg.text}
+            <BoldText text={msg.text} />
           </div>
         ))}
         {loading && (
@@ -51,9 +90,9 @@ const Chatbot = () => {
           </div>
         )}
       </div>
-      
+
       <form onSubmit={handleSubmit} className="flex w-full">
-        <input 
+        <input
           type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
